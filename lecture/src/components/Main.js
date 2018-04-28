@@ -3,7 +3,7 @@ import React, { Component } from 'react';
 
 const players = [
     {
-        name: "dragos",
+        name: "Dragos",
         score: 0
     },
     {
@@ -34,13 +34,14 @@ class Players extends Component {
 }
 
 class Player extends Component {
+    
     render() {
         return (
             <div className="player">
                 <p className="name">{this.props.name}</p>
-                <button>+</button>
+                <button className="increment">+</button>
                 <p className="score">{this.props.score}</p>
-                <button>-</button>
+                <button className="decrement">-</button>
             </div> 
         );
     }

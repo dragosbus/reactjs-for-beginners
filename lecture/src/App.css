@@ -23,3 +23,24 @@
   width: 60%;
   font-size: 20px;
 }
+
+button {
+  border: none;
+  color: #fff;
+  padding: 10px 20px;
+  font-size: 20px;
+  border-radius: 5px;
+}
+
+.decrement { 
+  background: rgb(224, 57, 57);
+}
+
+.increment {
+  background: rgb(33, 155, 74);
+}
+
+.score {
+  padding: 1rem;
+  font-size: 17px;
+}
