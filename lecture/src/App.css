@@ -9,3 +9,17 @@
   padding: 10px 2px;
   box-shadow: 0 0 10px 5px rgba(2,2,2,0.25);
 }
+
+.player {
+  display: flex;
+  width: 100%;
+  justify-content: center;
+  align-items: center;
+  background: rgb(21, 10, 51);
+  color: #fff;
+}
+
+.name {
+  width: 60%;
+  font-size: 20px;
+}
