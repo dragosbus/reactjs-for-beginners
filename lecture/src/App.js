@@ -1,18 +1,42 @@
 import React, { Component } from 'react';
-import logo from './logo.svg';
 import './App.css';
+
+var style = {
+  
+};
+
+class Header extends Component {
+  constructor(props) {
+    super(props);
+    this.state = {
+      headerText: 'First React App'
+    };
+  }
+  render() {
+    return (
+      <header className="main-header">
+        <h1>{this.state.headerText}</h1>
+      </header>
+    );
+  }
+}
+
+class Main extends Component {
+  render() {
+    return (
+      <main>
+        <p>This is my first react app</p>
+      </main>
+    );
+  }
+}
 
 class App extends Component {
   render() {
     return (
-      <div className="App">
-        <header className="App-header">
-          <img src={logo} className="App-logo" alt="logo" />
-          <h1 className="App-title">Welcome to React</h1>
-        </header>
-        <p className="App-intro">
-          To get started, edit <code>src/App.js</code> and save to reload.
-        </p>
+      <div>
+        <Header />
+        <Main />
       </div>
     );
   }
