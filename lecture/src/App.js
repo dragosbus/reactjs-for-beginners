@@ -1,9 +1,6 @@
 import React, { Component } from 'react';
 import './App.css';
 
-var style = {
-  
-};
 
 class Header extends Component {
   constructor(props) {
@@ -21,11 +18,25 @@ class Header extends Component {
   }
 }
 
+class Paragraph extends Component {
+  render() {
+    return (
+      <p>{this.props.text}</p>
+    );
+  }
+}
+
 class Main extends Component {
+  constructor(props) {
+    super(props);
+    this.state = {
+      data: [1,2,3,4,5]
+    }
+  }
   render() {
     return (
       <main>
-        <p>This is my first react app</p>
+        {this.state.data.map((v, i) => <Paragraph text={v} key={i}/>)}
       </main>
     );
   }
