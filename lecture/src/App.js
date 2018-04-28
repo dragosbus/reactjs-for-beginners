@@ -18,27 +18,24 @@ class Header extends Component {
   }
 }
 
-class Paragraph extends Component {
-  render() {
-    return (
-      <p>{this.props.text}</p>
-    );
-  }
-}
-
-class Main extends Component {
+class Clock extends Component {
   constructor(props) {
     super(props);
-    this.state = {
-      data: [1,2,3,4,5]
-    }
+    this.state = { date: new Date() };
+  }
+  componentDidMount() {
+    this.timeID = setInterval(() => {
+      this.setState({
+        date: new Date()
+      });
+    },1000);
+  }
+  
+  componentWillUnmount() {
+    clearInterval(this.timeID);
   }
   render() {
-    return (
-      <main>
-        {this.state.data.map((v, i) => <Paragraph text={v} key={i}/>)}
-      </main>
-    );
+    return <p>The time is: {this.state.date.toLocaleTimeString()}</p>
   }
 }
 
@@ -47,7 +44,7 @@ class App extends Component {
     return (
       <div>
         <Header />
-        <Main />
+        <Clock/>
       </div>
     );
   }
