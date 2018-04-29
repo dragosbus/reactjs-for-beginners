@@ -92,7 +92,7 @@ class Boxes extends Component {
         return (
             <div>
                 <label style={{color: this.props.checked ? 'green' : 'red'}}>Are you going?</label>
-                <input type="checkbox" checked={this.props.isChecked} onChange={this.props.checkboxHandler}/>
+                <input type="checkbox" onChange={this.props.checkboxHandler} checked={this.props.checked}/>
             </div>
         );
     }
