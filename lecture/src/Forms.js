@@ -7,11 +7,13 @@ class Form extends Component {
         this.state = {
             valueInput: '',
             valueTextArea: '',
-            option: 'All'
+            option: 'All',
+            isChecked: true
         }
         this.changeInputHandler = this.changeInputHandler.bind(this);
         this.changeTextAreaHandler = this.changeTextAreaHandler.bind(this);
         this.selectArea = this.selectArea.bind(this);
+        this.checkboxHandler = this.checkboxHandler.bind(this);
     }
 
     changeInputHandler(e) {
@@ -36,12 +38,20 @@ class Form extends Component {
         
     }
 
+    checkboxHandler(e) {
+        console.log(this.state.isChecked)
+        this.setState({
+            isChecked: e.target.checked
+        });
+    }
+
     render() {
         return (
             <form>
                 <InputText value={this.state.valueInput} changeInputHandler={this.changeInputHandler}/>
                 <TextArea value={this.state.valueTextArea} changeTextAreaHandler={this.changeTextAreaHandler}/>
-                <SelectArea selectArea={this.selectArea}/>
+                <SelectArea selectArea={this.selectArea} />
+                <Boxes checked={this.state.isChecked} checkboxHandler={this.checkboxHandler}/>
             </form>
         );
     }
@@ -72,6 +82,18 @@ class SelectArea extends Component {
                 <option value="tablets">Tablets</option>
                 <option value="pc">Computers</option>
             </select>
+        );
+    }
+}
+
+class Boxes extends Component {
+    
+    render() {
+        return (
+            <div>
+                <label style={{color: this.props.checked ? 'green' : 'red'}}>Are you going?</label>
+                <input type="checkbox" checked={this.props.isChecked} onChange={this.props.checkboxHandler}/>
+            </div>
         );
     }
 }
