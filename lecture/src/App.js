@@ -96,6 +96,19 @@ class NumberComponent extends Component {
   componentWillReceiveProps() {
     console.log('Will receive props');
   }
+  shouldComponentUpdate(newProps, nextState) {
+    console.log('Should comp update');
+  }
+  componentWillUpdate(newProps, nextState) {
+    console.log('COmpo will update');
+  }
+  componentDidUpdate(newProps, nextState) {
+    console.log('Comp did update')
+  
+  }
+  componentWillUnmount() {
+    console.log('Comp wil unmount')
+  }
   render() {
     return (
       <div>
