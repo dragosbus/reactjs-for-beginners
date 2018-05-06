@@ -108,14 +108,16 @@ export class Quiz extends Component {
     }
 
     renderMessage() {
-        return this.state.correct ?
-            <div className="after right">
-                <h3>Correct Answer</h3>
-            </div>
-            :
-            <div className="after wrong">
-                <h3>Wrong Answer</h3>
-            </div>
+        if (this.state.gameOver) {
+            return this.state.correct ?
+                <div className="after right">
+                    <h3>Correct Answer</h3>
+                </div>
+                :
+                <div className="after wrong">
+                    <h3>Wrong Answer</h3>
+                </div> 
+        }
     }
 
     play() {
