@@ -30,16 +30,29 @@ export class Quiz extends Component {
         return riddle;
     }
 
+    renderQuestion() {
+        let field1 = this.state.riddle.field1;
+        let field2 = this.state.riddle.field2;
+
+        return (
+            <p className="question">What is the sum of {field1} and {field2}?</p>
+        );
+    }
+
+    renderOptions() {
+        return (
+            <div className="options">
+                {this.state.riddle.resultsArr.map((v, i) => <QuizOptions key={i} option={v} />)}
+            </div>
+        );
+    }
+
     render() {
         return (
             <div className="quiz">
                 <div className="quiz-content">
-                    <p className="question">
-                        What is the sum of 5+5?
-                    </p>
-                    <div className="options">
-                        {this.state.riddle.resultsArr.map((v, i) => <QuizOptions key={i} option={v}/>)}
-                    </div>
+                    {this.renderQuestion()}
+                    {this.renderOptions()}
                 </div>
                 <div className="play-again">
                     <a className="button">Play Again</a>
