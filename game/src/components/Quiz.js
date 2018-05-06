@@ -8,8 +8,27 @@ export class Quiz extends Component {
     constructor(props) {
         super(props);
         let riddle = this.playGame();
+        let correct = false;
+        let gameOver = false;
         this.state = { riddle };
         this.playGame = this.playGame.bind(this);
+        this.checkResult = this.checkResult.bind(this);
+    }
+
+    checkResult(option) {
+        if (this.state.riddle.result === option) {
+            console.log('correct');
+            this.setState({
+                correct: true,
+                gameOver: true
+            });
+        } else {
+            console.log('wrong');
+            this.setState({
+                correct: false,
+                gameOver: true
+            });
+        }
     }
 
     randomNumber(max, min) {
@@ -74,10 +93,11 @@ export class Quiz extends Component {
         );
     }
 
+
     renderOptions() {
         return (
             <div className="options">
-                {this.state.riddle.resultsArr.map((v, i) => <QuizOptions key={i} option={v} />)}
+                {this.state.riddle.resultsArr.map((v, i) => <QuizOptions key={i} option={v} checkResult={option => this.checkResult(option)}/>)}
             </div>
         );
     }
