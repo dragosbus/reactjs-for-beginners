@@ -1,8 +1,21 @@
 import React, { Component } from 'react';
+import { QuizOptions } from './QuizOptions';
 import './../App.css';
 
 
 export class Quiz extends Component {
+
+    constructor(props) {
+        super(props);
+        let riddle = {
+            resultsArr: [8, 9, 10, 11],
+            field1: 5,
+            field2: 5,
+            answer: 10
+        };
+        this.state = { riddle };
+    }
+
     render() {
         return (
             <div className="quiz">
@@ -11,10 +24,7 @@ export class Quiz extends Component {
                         What is the sum of 5+5?
                     </p>
                     <div className="options">
-                        <div className="fields">10</div>
-                        <div className="fields">20</div>
-                        <div className="fields">30</div>
-                        <div className="fields">40</div>
+                        {this.state.riddle.resultsArr.map(v => <QuizOptions option={v}/>)}
                     </div>
                 </div>
                 <div className="play-again">
