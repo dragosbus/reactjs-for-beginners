@@ -13,17 +13,16 @@ export class Quiz extends Component {
         this.state = { riddle };
         this.playGame = this.playGame.bind(this);
         this.checkResult = this.checkResult.bind(this);
+        this.play = this.play.bind(this);
     }
 
     checkResult(option) {
         if (this.state.riddle.result === option) {
-            console.log('correct');
             this.setState({
                 correct: true,
                 gameOver: true
             });
         } else {
-            console.log('wrong');
             this.setState({
                 correct: false,
                 gameOver: true
@@ -80,8 +79,14 @@ export class Quiz extends Component {
             field2,
             result
         };
-        
-        return riddle;
+
+        if (this.state && this.state.gameOver) {
+            this.setState({
+                riddle: riddle
+            });
+        } else {
+            return riddle;
+        }
     }
 
     renderQuestion() {
@@ -102,6 +107,25 @@ export class Quiz extends Component {
         );
     }
 
+    renderMessage() {
+        return this.state.correct ?
+            <div className="after right">
+                <h3>Correct Answer</h3>
+            </div>
+            :
+            <div className="after wrong">
+                <h3>Wrong Answer</h3>
+            </div>
+    }
+
+    play() {
+        this.setState({
+            correct: false,
+            gameOver: false
+        });
+        this.playGame();
+    }
+
     render() {
         return (
             <div className="quiz">
@@ -109,8 +133,9 @@ export class Quiz extends Component {
                     {this.renderQuestion()}
                     {this.renderOptions()}
                 </div>
+                {this.renderMessage()}
                 <div className="play-again">
-                    <a className="button">Play Again</a>
+                    <a onClick={this.play} className="button">Play Again</a>
                 </div>
             </div>
         );
