@@ -9,24 +9,59 @@ export class Quiz extends Component {
         super(props);
         let riddle = this.playGame();
         this.state = { riddle };
+        this.playGame = this.playGame.bind(this);
     }
 
     randomNumber(max, min) {
         return Math.floor(Math.random() * (max- min + 1)) + min;
     }
 
+    generateRandomOptions(sum) {
+        
+        let resultsArr = [];
+        let randomNumberArr = [];
+
+        while (randomNumberArr.length <= 3) {
+            let randomNumber = this.randomNumber(1, 19);
+            if (randomNumberArr.includes(randomNumber)) {
+                continue;
+            } else {
+                randomNumberArr.push(randomNumber);
+            }
+        }
+
+        for (let i = 0; i < 3; i++) {
+            let addSubtract = this.randomNumber(0, 1);
+            let result = sum;
+            if (addSubtract === 1) {
+                //add the number
+                result += randomNumberArr[i];
+                resultsArr.push(result);
+            } else {
+                //subtract the number
+                result -= randomNumberArr[i];
+                resultsArr.push(result);
+            }
+        }
+
+        return resultsArr;
+    }
+
     playGame() {
         let field1 = this.randomNumber(20, 50);
         let field2 = this.randomNumber(20, 50);
         let result = field1 + field2;
+        let resultsArr = this.generateRandomOptions(result);
+        resultsArr.push(result);
+        resultsArr.sort((a, b) => a - b);
 
         let riddle = {
-            resultsArr: [8, 9, 10, 11],
+            resultsArr,
             field1,
             field2,
             result
         };
-        console.log(riddle);
+        
         return riddle;
     }
 
