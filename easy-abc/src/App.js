@@ -8,21 +8,31 @@ class App extends Component {
     this.state = {
       index: 0,
       alphabet,
-      tick: 0
+      tick: 0,
+      checked: false
     }
     this.nextQuestion = this.nextQuestion.bind(this);
     this.prevQuestion = this.prevQuestion.bind(this);
     this.playLetterSound = this.playLetterSound.bind(this);
+    this.toggleSound = this.toggleSound.bind(this);
+  }
+
+  toggleSound() {
+    this.setState({
+      checked: !this.state.checked
+    });
   }
 
   playLetterSound() {
     let letterSound = document.querySelector('.letter-sound');
     let wordSound = document.querySelector('.word-sound');
     
-    if (this.state.tick < 2) {
-      letterSound.play();
-    } else {
-      wordSound.play();
+    if (!this.state.checked) {
+      if (this.state.tick < 2) {
+        letterSound.play();
+      } else {
+        wordSound.play();
+      }
     }
   }
 
@@ -63,13 +73,14 @@ class App extends Component {
   render() {
     return (
       <div className="app">
+        <input type="checkbox" checked={this.state.checked} onClick={this.toggleSound}/>  
         <div className="letter">
           {this.state.alphabet[this.state.index].letter}
           <audio className="letter-sound" src={this.state.alphabet[this.state.index].letterSound}></audio>
         </div>
         <div className="controller">
           <button className="prev" onClick={this.prevQuestion}>Previous</button>
-          <button className="sound">Play sound Again</button>
+          <button className="sound" onClick={this.playLetterSound}>Play sound Again</button>
           <button className="next" onClick={this.nextQuestion}>Next</button>
         </div>
         <div className="field-block">
