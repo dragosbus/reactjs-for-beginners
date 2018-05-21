@@ -12,11 +12,26 @@ class App extends Component {
     }
     this.nextQuestion = this.nextQuestion.bind(this);
     this.prevQuestion = this.prevQuestion.bind(this);
+    this.playLetterSound = this.playLetterSound.bind(this);
+  }
+
+  playLetterSound() {
+    let letterSound = document.querySelector('.letter-sound');
+    let wordSound = document.querySelector('.word-sound');
+    
+    if (this.state.tick < 2) {
+      letterSound.play();
+    } else {
+      wordSound.play();
+    }
   }
 
   componentDidMount() {
-    let letterSound = document.querySelector('.letter-sound');
-    letterSound.play();
+    this.playLetterSound();
+  }
+
+  componentDidUpdate() {
+    this.playLetterSound();
   }
 
   nextQuestion() {
@@ -65,6 +80,7 @@ class App extends Component {
           <div className="field">
             <span className={this.state.tick > 1 ? "hide" : "show"}>Click next to view Spelling</span>   
             <p className={this.state.tick === 2 ? "show" : "hide"}>{this.state.alphabet[this.state.index].word}</p>
+            <audio className="word-sound" src={this.state.alphabet[this.state.index].wordSound}></audio>
           </div>
         </div>
       </div>
