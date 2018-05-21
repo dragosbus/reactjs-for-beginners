@@ -7,7 +7,8 @@ class App extends Component {
     super(props);
     this.state = {
       index: 0,
-      alphabet
+      alphabet,
+      tick: 0
     }
     this.nextQuestion = this.nextQuestion.bind(this);
     this.prevQuestion = this.prevQuestion.bind(this);
@@ -15,8 +16,15 @@ class App extends Component {
 
   nextQuestion() {
     this.setState({
-      index: this.state.index < this.state.alphabet.length - 1 ? this.state.index+1 : 0
+      tick: this.state.tick + 1
     });
+
+    if (this.state.tick === 2) {
+      this.setState({
+        index: this.state.index < this.state.alphabet.length - 1 ? this.state.index + 1 : 0,
+        tick: 0
+      });
+    } 
   }
 
   prevQuestion() {
@@ -38,9 +46,13 @@ class App extends Component {
         </div>
         <div className="field-block">
           <div className="field">
-            <img src={this.state.alphabet[this.state.index].image} alt=""/>
+            <span className={this.state.tick !== 0 ? "hide" : "show"}>Click next to view image</span>  
+            <img className={this.state.tick >= 1 ? "show" : "hide"} src={this.state.alphabet[this.state.index].image} alt=""/>
           </div>
-          <div className="field">{this.state.alphabet[this.state.index].word}</div>
+          <div className="field">
+            <span className={this.state.tick > 1 ? "hide" : "show"}>Click next to view Spelling</span>   
+            <p className={this.state.tick === 2 ? "show" : "hide"}>{this.state.alphabet[this.state.index].word}</p>
+          </div>
         </div>
       </div>
     );

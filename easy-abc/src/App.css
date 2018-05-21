@@ -57,7 +57,20 @@
   font-size: 3rem;
 }
 
+.field span {
+  width: 100%;
+  font-size: 1.35rem;
+}
+
 .field:first-child img {
-  width: 15rem;
-  height: 15rem;
+  width: 12rem;
+  height: 12rem;
+}
+
+.hide {
+  display: none;
+}
+
+.show {
+  display: block;
 }
