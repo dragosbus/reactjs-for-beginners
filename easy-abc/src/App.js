@@ -13,7 +13,7 @@ class App extends Component {
 
   render() {
     return (
-      <div className="App">
+      <div className="app">
         <div className="letter">
           {this.state.alphabet[this.state.index].letter}
         </div>
@@ -21,6 +21,10 @@ class App extends Component {
           <button className="prev">Previous</button>
           <button className="sound">Play sound Again</button>
           <button className="next">Next</button>
+        </div>
+        <div className="field-block">
+          <div className="field">Click next to view image</div>
+          <div className="field">Click next to view spelling</div>
         </div>
       </div>
     );
