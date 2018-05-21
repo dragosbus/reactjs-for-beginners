@@ -37,8 +37,10 @@ class App extends Component {
           <button className="next" onClick={this.nextQuestion}>Next</button>
         </div>
         <div className="field-block">
-          <div className="field">Click next to view image</div>
-          <div className="field">Click next to view spelling</div>
+          <div className="field">
+            <img src={this.state.alphabet[this.state.index].image} alt=""/>
+          </div>
+          <div className="field">{this.state.alphabet[this.state.index].word}</div>
         </div>
       </div>
     );
