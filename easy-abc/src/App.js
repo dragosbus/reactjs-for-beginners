@@ -9,6 +9,18 @@ class App extends Component {
       index: 0,
       alphabet
     }
+    this.nextQuestion = this.nextQuestion.bind(this);
+    this.prevQuestion = this.prevQuestion.bind(this);
+  }
+
+  nextQuestion() {
+    this.setState({
+      index: this.state.index < this.state.alphabet.length - 1 ? this.state.index+1 : 0
+    });
+  }
+
+  prevQuestion() {
+
   }
 
   render() {
@@ -20,7 +32,7 @@ class App extends Component {
         <div className="controller">
           <button className="prev">Previous</button>
           <button className="sound">Play sound Again</button>
-          <button className="next">Next</button>
+          <button className="next" onClick={this.nextQuestion}>Next</button>
         </div>
         <div className="field-block">
           <div className="field">Click next to view image</div>
