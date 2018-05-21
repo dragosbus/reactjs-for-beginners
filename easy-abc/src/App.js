@@ -14,6 +14,11 @@ class App extends Component {
     this.prevQuestion = this.prevQuestion.bind(this);
   }
 
+  componentDidMount() {
+    let letterSound = document.querySelector('.letter-sound');
+    letterSound.play();
+  }
+
   nextQuestion() {
     this.setState({
       tick: this.state.tick + 1
@@ -29,8 +34,15 @@ class App extends Component {
 
   prevQuestion() {
     this.setState({
-      index: this.state.index < 1 ? this.state.alphabet.length-1 : this.state.index - 1
+      tick: this.state.tick - 1
     });
+
+    if (this.state.tick === 0) {
+      this.setState({
+        index: this.state.index < 1 ? this.state.alphabet.length - 1 : this.state.index - 1,
+        tick: 0
+      });
+    }
   }
 
   render() {
@@ -38,6 +50,7 @@ class App extends Component {
       <div className="app">
         <div className="letter">
           {this.state.alphabet[this.state.index].letter}
+          <audio className="letter-sound" src={this.state.alphabet[this.state.index].letterSound}></audio>
         </div>
         <div className="controller">
           <button className="prev" onClick={this.prevQuestion}>Previous</button>
