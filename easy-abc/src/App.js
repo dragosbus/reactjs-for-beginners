@@ -20,7 +20,9 @@ class App extends Component {
   }
 
   prevQuestion() {
-
+    this.setState({
+      index: this.state.index < 1 ? this.state.alphabet.length-1 : this.state.index - 1
+    });
   }
 
   render() {
@@ -30,7 +32,7 @@ class App extends Component {
           {this.state.alphabet[this.state.index].letter}
         </div>
         <div className="controller">
-          <button className="prev">Previous</button>
+          <button className="prev" onClick={this.prevQuestion}>Previous</button>
           <button className="sound">Play sound Again</button>
           <button className="next" onClick={this.nextQuestion}>Next</button>
         </div>
