@@ -1,18 +1,27 @@
 import React, { Component } from 'react';
-import logo from './logo.svg';
+import alphabet from './alphabets.json';
 import './App.css';
 
 class App extends Component {
+  constructor(props) {
+    super(props);
+    this.state = {
+      index: 0,
+      alphabet
+    }
+  }
+
   render() {
     return (
       <div className="App">
-        <header className="App-header">
-          <img src={logo} className="App-logo" alt="logo" />
-          <h1 className="App-title">Welcome to React</h1>
-        </header>
-        <p className="App-intro">
-          To get started, edit <code>src/App.js</code> and save to reload.
-        </p>
+        <div className="letter">
+          {this.state.alphabet[this.state.index].letter}
+        </div>
+        <div className="controller">
+          <button className="prev">Previous</button>
+          <button className="sound">Play sound Again</button>
+          <button className="next">Next</button>
+        </div>
       </div>
     );
   }
